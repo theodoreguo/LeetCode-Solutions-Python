@@ -35,9 +35,12 @@ class Solution(object):
         :type k: int
         :rtype: void Do not return anything, modify nums in-place instead.
         """
-        while k > 0:
-            nums.insert(0, nums.pop())
-            k -= 1
+        #  while k > 0:
+        #     nums.insert(0, nums.pop())
+        #     k -= 1
+        for i in range(k):
+            val = nums.pop()
+            nums.insert(0, val)
 
 """
 A little important thing to be cautious:
@@ -67,7 +70,7 @@ if __name__ == '__main__':
     print a1
     Solution2().rotate(a1, k1)
     print a1
-    
+
     a2, k2 = [-1,-100,3,99], 2
     Solution().rotate(a2, k2)
     print a2
