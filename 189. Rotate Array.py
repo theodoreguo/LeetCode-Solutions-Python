@@ -60,9 +60,10 @@ class Solution2(object):
         :type k: int
         :rtype: void Do not return anything, modify nums in-place instead.
         """
-        n = len(nums)
-        k = k % n
-        nums[:] = nums[n-k:] + nums[:n-k]
+        # n = len(nums)
+        # k = k % n
+        # nums[:] = nums[n-k:] + nums[:n-k]
+        nums[:] = nums[len(nums) - k:] + nums[:len(nums) - k]
 
 """
 O(n) runtime, O(1) space
@@ -90,15 +91,15 @@ if __name__ == '__main__':
     a1, k1 = [1,2,3,4,5,6,7], 3
     # Solution().rotate(a1, k1)
     # print a1
-    # Solution2().rotate(a1, k1)
-    # print a1
-    Solution3().rotate(a1, k1)
+    Solution2().rotate(a1, k1)
     print a1
+    # Solution3().rotate(a1, k1)
+    # print a1
 
     a2, k2 = [-1,-100,3,99], 2
     # Solution().rotate(a2, k2)
     # print a2
-    # Solution2().rotate(a2, k2)
-    # print a2
-    Solution3().rotate(a2, k2)
+    Solution2().rotate(a2, k2)
     print a2
+    # Solution3().rotate(a2, k2)
+    # print a2
