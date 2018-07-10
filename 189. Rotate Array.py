@@ -39,10 +39,37 @@ class Solution(object):
             nums.insert(0, nums.pop())
             k -= 1
 
+"""
+A little important thing to be cautious:
+
+nums[:] = nums[n-k:] + nums[:n-k] 
+can't be written as:
+nums = nums[n-k:] + nums[:n-k]
+on the OJ.
+
+The previous one can truly change the value of old nums, but the following one just changes its reference to a new nums 
+not the value of old nums.
+"""
+class Solution2(object):
+    def rotate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums)
+        k = k % n
+        nums[:] = nums[n-k:] + nums[:n-k]
+
 if __name__ == '__main__':
     a1, k1 = [1,2,3,4,5,6,7], 3
     Solution().rotate(a1, k1)
     print a1
+    Solution2().rotate(a1, k1)
+    print a1
+    
     a2, k2 = [-1,-100,3,99], 2
     Solution().rotate(a2, k2)
+    print a2
+    Solution2().rotate(a2, k2)
     print a2
