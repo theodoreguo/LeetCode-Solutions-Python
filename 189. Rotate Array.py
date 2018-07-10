@@ -64,15 +64,41 @@ class Solution2(object):
         k = k % n
         nums[:] = nums[n-k:] + nums[:n-k]
 
+"""
+O(n) runtime, O(1) space
+
+Classical 3-step array rotation:
+1. reverse the first n - k elements: [4,3,2,1,5,6,7]
+2. reverse the rest of them: [4,3,2,1,7,6,5]
+3. reverse the entire array: [5,6,7,1,2,3,4]
+"""
+class Solution3(object):
+    def rotate(self, nums, k):
+        if k is None or k <= 0:
+            return
+        k, end = k % len(nums), len(nums) - 1
+        self.reverse(nums, 0, end - k)
+        self.reverse(nums, end - k + 1, end)
+        self.reverse(nums, 0, end)
+
+    def reverse(self, nums, start, end):
+        while start < end:
+            nums[start], nums[end] = nums[end], nums[start]
+            start, end = start + 1, end - 1
+
 if __name__ == '__main__':
     a1, k1 = [1,2,3,4,5,6,7], 3
-    Solution().rotate(a1, k1)
-    print a1
-    Solution2().rotate(a1, k1)
+    # Solution().rotate(a1, k1)
+    # print a1
+    # Solution2().rotate(a1, k1)
+    # print a1
+    Solution3().rotate(a1, k1)
     print a1
 
     a2, k2 = [-1,-100,3,99], 2
-    Solution().rotate(a2, k2)
-    print a2
-    Solution2().rotate(a2, k2)
+    # Solution().rotate(a2, k2)
+    # print a2
+    # Solution2().rotate(a2, k2)
+    # print a2
+    Solution3().rotate(a2, k2)
     print a2
